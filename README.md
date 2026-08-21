@@ -1,16 +1,16 @@
-OkaPaginationBundle
-====================
+OkaPDPAuthorizationBundle
+=========================
 
 This bundle provides a flexible pagination system.
 
-[![Latest Stable Version](https://poser.pugx.org/coka/pagination-bundle/v/stable)](https://packagist.org/packages/coka/pagination-bundle)
-[![Total Downloads](https://poser.pugx.org/coka/pagination-bundle/downloads)](https://packagist.org/packages/coka/pagination-bundle)
-[![Latest Unstable Version](https://poser.pugx.org/coka/pagination-bundle/v/unstable)](https://packagist.org/packages/coka/pagination-bundle)
-[![License](https://poser.pugx.org/coka/pagination-bundle/license)](https://packagist.org/packages/coka/pagination-bundle)
-[![Monthly Downloads](https://poser.pugx.org/coka/pagination-bundle/d/monthly)](https://packagist.org/packages/coka/pagination-bundle)
-[![Daily Downloads](https://poser.pugx.org/coka/pagination-bundle/d/daily)](https://packagist.org/packages/coka/pagination-bundle)
+[![Latest Stable Version](https://poser.pugx.org/coka/pdp-authorization-bundle/v/stable)](https://packagist.org/packages/coka/pdp-authorization-bundle)
+[![Total Downloads](https://poser.pugx.org/coka/pdp-authorization-bundle/downloads)](https://packagist.org/packages/coka/pdp-authorization-bundle)
+[![Latest Unstable Version](https://poser.pugx.org/coka/pdp-authorization-bundle/v/unstable)](https://packagist.org/packages/coka/pdp-authorization-bundle)
+[![License](https://poser.pugx.org/coka/pdp-authorization-bundle/license)](https://packagist.org/packages/coka/pdp-authorization-bundle)
+[![Monthly Downloads](https://poser.pugx.org/coka/pdp-authorization-bundle/d/monthly)](https://packagist.org/packages/coka/pdp-authorization-bundle)
+[![Daily Downloads](https://poser.pugx.org/coka/pdp-authorization-bundle/d/daily)](https://packagist.org/packages/coka/pdp-authorization-bundle)
 [![SensioLabsInsight](https://insight.sensiolabs.com/projects/57ae9110-63f5-41ab-b355-79f4fe3a2803/mini.png)](https://insight.sensiolabs.com/projects/57ae9110-63f5-41ab-b355-79f4fe3a2803)
-[![Travis CI](https://travis-ci.org/CedrickOka/pagination-bundle.svg?branch=master)](https://travis-ci.org/CedrickOka/pagination-bundle)
+[![Travis CI](https://travis-ci.org/CedrickOka/pdp-authorization-bundle.svg?branch=master)](https://travis-ci.org/CedrickOka/pdp-authorization-bundle)
 
 Latest updates
 --------------
