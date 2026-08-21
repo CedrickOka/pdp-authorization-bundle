@@ -1,0 +1,62 @@
+{
+    "name" : "coka/pdp-authorization-bundle",
+    "type" : "symfony-bundle",
+    "description" : "Symfony bundle providing fine-grained authorization using an external Policy Decision Point (PDP).",
+    "homepage" : "https://github.com/CedrickOka/pdp-authorization-bundle",
+    "license" : "MIT",
+    "keywords" : [
+        "symfony",
+        "authorization",
+        "voter",
+        "pdp",
+        "opa",
+        "pep"
+    ],
+    "authors" : [{
+            "name" : "Cedrick Oka",
+            "email" : "okacedrick@gmail.com"
+        }
+    ],
+    "autoload" : {
+        "psr-4" : {
+            "Oka\\PDPAuthorizationBundle\\" : "src"
+        },
+        "exclude-from-classmap" : [
+            "/tests/"
+        ]
+    },
+    "autoload-dev" : {
+        "psr-4" : {
+            "Oka\\PDPAuthorizationBundle\\Tests\\" : "tests/"
+        }
+    },
+    "require" : {
+        "php": ">=8.0",
+        "symfony/http-client": "^7.4 || ^8.4",
+        "symfony/security-bundle": "^7.4 || ^8.4"
+    },
+    "require-dev": {
+        "friendsofphp/php-cs-fixer": "^3.95",
+        "symfony/browser-kit": "^7.4 || ^8.4",
+        "symfony/framework-bundle": "^7.4 || ^8.4",
+        "symfony/phpunit-bridge": "^7.4 || ^8.4",
+        "symfony/yaml": "^7.4 || ^8.4"
+    },
+    "config" : {
+        "sort-packages" : true
+    },
+    "scripts" : {
+        "php-cs-fixer" : "php-cs-fixer fix --config=.php-cs-fixer.dist.php -v --dry-run --stop-on-violation --using-cache=no"
+    },
+    "extra" : {
+        "branch-alias" : {
+            "dev-master" : "0.x-dev"
+        },
+        "symfony" : {
+            "allow-contrib" : "true"
+        }
+    },
+    "support" : {
+        "docs" : "https://github.com/CedrickOka/pdp-authorization-bundle/blob/master/docs/index.md"
+    }
+}

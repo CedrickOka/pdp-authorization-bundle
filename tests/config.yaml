@@ -1,0 +1,76 @@
+framework:
+    test: true
+    secret: 'secret'
+    default_locale: 'fr'
+    session:
+        storage_factory_id: session.storage.factory.mock_file
+        handler_id: null
+    php_errors:
+        log: true
+    property_info:
+        with_constructor_extractor: true
+    cache:
+        # Put the unique name of your app here: the prefix seed
+        # is used to compute stable namespaces for cache keys.
+        #prefix_seed: your_vendor_name/app_name
+
+        # The app cache caches to the filesystem by default.
+        # Other options include:
+
+        # Redis
+        #app: cache.adapter.redis
+        #default_redis_provider: redis://localhost
+
+        # APCu (not recommended with heavy random-write workloads as memory fragmentation can cause perf issues)
+        #app: cache.adapter.apcu
+    router:
+        resource: '%kernel.project_dir%/tests/routes.yaml'
+        utf8: true
+    http_client:
+        mock_response_factory: Oka\PDPAuthorizationBundle\Test\MockHttpClientCallback
+
+security:
+    password_hashers:
+        Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface:
+            algorithm: auto
+            cost: 4 # Lowest possible value for bcrypt
+            time_cost: 3 # Lowest possible value for argon
+            memory_cost: 10 # Lowest possible value for argon
+    providers:
+        users_in_memory:
+            memory:
+                users:
+                    user: { password: 'password123', roles: ['ROLE_USER'] }
+                    admin: { password: 'password123', roles: ['ROLE_ADMIN'] }
+    firewalls:
+        main:
+            pattern: '^/'
+            lazy: true
+            stateless: true
+            provider: users_in_memory
+            http_basic:
+                realm: Secured Area
+    access_control:
+        - { path: '^/admin$', roles: ROLE_ADMIN }
+        - { path: '^/me$', roles: ROLE_USER }
+        - { path: '^/', roles: PUBLIC_ACCESS }
+    role_hierarchy:
+        ROLE_ADMIN: ['ROLE_USER']
+        ROLE_SUPER_ADMIN: ['ROLE_ADMIN']
+    access_decision_manager:
+        strategy: unanimous
+        allow_if_all_abstain: false
+
+oka_pdp_authorization:
+    open_policy_agent:
+        policy_url: 'http://localhost:8181/v1/data/authz/allow'
+        timeout: 1
+        retry_max_attempts: 0
+
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+
+    Oka\PDPAuthorizationBundle\Test\MockHttpClientCallback:
+        public: true
