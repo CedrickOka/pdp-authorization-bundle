@@ -24,7 +24,7 @@ jobs:
             symfony_version: "7.4"
             stability: "stable"
           - php_version: "8.2"
-            symfony_version: "8"
+            symfony_version: "8.2"
             stability: "stable"
     runs-on: ubuntu-latest
     continue-on-error: ${{ matrix.stability == 'dev' }}
