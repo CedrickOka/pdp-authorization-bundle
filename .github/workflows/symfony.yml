@@ -20,10 +20,10 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - php_version: "8.0"
+          - php_version: "8.2"
             symfony_version: "7.4"
             stability: "stable"
-          - php_version: "8.0"
+          - php_version: "8.2"
             symfony_version: "8"
             stability: "stable"
     runs-on: ubuntu-latest
