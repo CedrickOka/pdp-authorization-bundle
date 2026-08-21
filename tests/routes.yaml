@@ -1,0 +1,3 @@
+index:
+    resource: Oka\PDPAuthorizationBundle\Test\Controller\IndexController
+    type: attribute

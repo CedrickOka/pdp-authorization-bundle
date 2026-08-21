@@ -1,0 +1,9 @@
+services:
+    oka_pdp_authorization.policy_decision_point.security.voter:
+        class: Oka\PDPAuthorizationBundle\Security\Voter\PolicyDecisionPointVoter
+        arguments:
+          - []
+#          - !tagged_iterator oka_pdp_authorization.provider
+        tags: [security.voter]
+
+    Oka\PDPAuthorizationBundle\Security\Voter\PolicyDecisionPointVoter: '@oka_pdp_authorization.policy_decision_point.security.voter'
