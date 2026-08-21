@@ -20,15 +20,11 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - php_version: "8.1"
-            symfony_version: "5.4"
-            stability: "stable"
-            composer_extra_args: "--ignore-platform-req=ext-mongodb"
-          - php_version: "8.1"
-            symfony_version: "6.4"
-            stability: "stable"
-          - php_version: "8.2"
+          - php_version: "8.0"
             symfony_version: "7.4"
+            stability: "stable"
+          - php_version: "8.0"
+            symfony_version: "8"
             stability: "stable"
     runs-on: ubuntu-latest
     continue-on-error: ${{ matrix.stability == 'dev' }}
@@ -41,14 +37,9 @@ jobs:
         with:
           php-version: ${{ matrix.php_version }}
           coverage: none
-          extensions: mbstring, intl, pdo, mongodb
+          extensions: mbstring, intl
           ini-values: date.timezone=UTC
       - uses: actions/checkout@v6
-
-      - name: Start MongoDB
-        uses: supercharge/mongodb-github-action@1.12.1
-        with:
-          mongodb-version: '7.0'
 
       - name: symfony/flex is required to install the correct symfony version
         if: ${{ matrix.symfony_version }}
@@ -71,8 +62,6 @@ jobs:
       - name: Execute tests (Unit and Feature tests) via PHPUnit
         env:
           SYMFONY_DEPRECATIONS_HELPER: max[direct]=0
-          MONGODB_URL: 'mongodb://localhost:27017'
-          MONGODB_DB: 'db_name'
         run: ./vendor/bin/simple-phpunit -c phpunit.xml.dist --testdox --coverage-text --colors=never tests/
 
 #    #  To automatically get bug fixes and new Php versions for shivammathur/setup-php,
