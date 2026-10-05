@@ -33,7 +33,7 @@ class PolicyDecisionPointVoter implements VoterInterface, CacheableVoterInterfac
 
     public function supportsType(string $subjectType): bool
     {
-        return 'null' === $subjectType || is_subclass_of($subjectType, SubjectIdentityInterface::class);
+        return 'null' === $subjectType || is_subclass_of($subjectType, ResourceIdentityInterface::class);
     }
 
     public function vote(TokenInterface $token, mixed $subject, array $attributes, ?Vote $vote = null): int
@@ -50,12 +50,12 @@ class PolicyDecisionPointVoter implements VoterInterface, CacheableVoterInterfac
                 /** @var PolicyDecisionPointProviderInterface $provider */
                 foreach ($this->providers as $provider) {
                     if ($provider->authorize($attribute, $user, $subject)) {
-                        $vote?->addReason(\sprintf('The user has "%s".', $attribute));
+                        $vote?->addReason(sprintf('The user has "%s" attribute.', $attribute));
                         $voteResult = self::ACCESS_GRANTED;
-                        continue;
+                        break;
                     }
 
-                    $vote?->addReason(\sprintf('The user doesn\'t have "%s".', $attribute));
+                    $vote?->addReason(sprintf('The user doesn\'t have "%s" attribute in PDP context "%s".', $attribute, $provider::class));
                 }
             }
         }

@@ -52,6 +52,7 @@ security:
                 realm: Secured Area
     access_control:
         - { path: '^/admin$', roles: ROLE_ADMIN }
+        - { path: '^/resources$', roles: ROLE_USER }
         - { path: '^/me$', roles: ROLE_USER }
         - { path: '^/', roles: PUBLIC_ACCESS }
     role_hierarchy:
@@ -74,3 +75,6 @@ services:
 
     Oka\PDPAuthorizationBundle\Test\MockHttpClientCallback:
         public: true
+
+    Oka\PDPAuthorizationBundle\Test\Controller\IndexController:
+        tags: ['controller.service_arguments']

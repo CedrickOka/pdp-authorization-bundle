@@ -1,11 +1,12 @@
 <?php
 
-namespace Oka\PDPAuthorizationBundle\Tests\Security;
+namespace Oka\PDPAuthorizationBundle\Test\Security;
 
 use Oka\PDPAuthorizationBundle\PolicyDecisionPoint\SubjectIdentityInterface;
 use Symfony\Component\Security\Core\Exception\DisabledException;
+use Oka\PDPAuthorizationBundle\PolicyDecisionPoint\ResourceIdentityInterface;
 
-class InMemoryUser implements SubjectIdentityInterface
+class InMemoryUser implements SubjectIdentityInterface, ResourceIdentityInterface
 {
     private string $username;
 
@@ -20,6 +21,11 @@ class InMemoryUser implements SubjectIdentityInterface
         }
 
         $this->username = $username;
+    }
+    
+    public function getResourceUrn(): string
+    {
+        return 'urn:pdp::user/9ae7a5e0-9c08-11f1-9226-bdb6948ff287';
     }
 
     public function __toString(): string

@@ -2,7 +2,7 @@
 
 namespace Oka\PDPAuthorizationBundle\Tests\Controller;
 
-use Oka\PDPAuthorizationBundle\Tests\Security\InMemoryUser;
+use Oka\PDPAuthorizationBundle\Test\Security\InMemoryUser;
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
@@ -26,6 +26,21 @@ class IndexControllerTest extends WebTestCase
 
     /**
      * @covers
+     *
+     * @depends testThatCanInvokeMe
+     */
+    public function testThatCanReadResource(): void
+    {
+        $this->client->loginUser(new InMemoryUser('user', 'password123', ['ROLE_USER']));
+        $this->client->request('GET', '/resources?id=77f54db0-d8fc-11ef-9838-0242ac12001f');
+
+        $this->assertResponseIsSuccessful();
+    }
+
+    /**
+     * @covers
+     *
+     * @depends testThatCanReadResource
      */
     public function testThatCanInvokeAdmin(): void
     {
@@ -37,16 +52,8 @@ class IndexControllerTest extends WebTestCase
 
     /**
      * @covers
-     */
-    public function testThatCanInvokeAnonymous(): void
-    {
-        $this->client->request('GET', '/anonymous');
-
-        $this->assertResponseIsSuccessful();
-    }
-
-    /**
-     * @covers
+     *
+     * @depends testThatCanInvokeAdmin
      */
     public function testThatCannotInvokeAdmin(): void
     {
@@ -56,6 +63,18 @@ class IndexControllerTest extends WebTestCase
         $this->client->loginUser(new InMemoryUser('user', 'password123', ['ROLE_USER']));
         $this->client->request('GET', '/admin');
         $this->assertResponseStatusCodeSame(401);
+    }
+
+    /**
+     * @covers
+     *
+     * @depends testThatCannotInvokeAdmin
+     */
+    public function testThatCanInvokeAnonymous(): void
+    {
+        $this->client->request('GET', '/anonymous');
+
+        $this->assertResponseIsSuccessful();
     }
 
     protected function setUp(): void
