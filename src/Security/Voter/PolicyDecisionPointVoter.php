@@ -50,12 +50,12 @@ class PolicyDecisionPointVoter implements VoterInterface, CacheableVoterInterfac
                 /** @var PolicyDecisionPointProviderInterface $provider */
                 foreach ($this->providers as $provider) {
                     if ($provider->authorize($attribute, $user, $subject)) {
-                        $vote?->addReason(\sprintf('The user has "%s".', $attribute));
+                        $vote?->addReason(sprintf('The user has "%s" attribute.', $attribute));
                         $voteResult = self::ACCESS_GRANTED;
-                        continue;
+                        break;
                     }
 
-                    $vote?->addReason(\sprintf('The user doesn\'t have "%s".', $attribute));
+                    $vote?->addReason(sprintf('The user doesn\'t have "%s" attribute in PDP context "%s".', $attribute, $provider::class));
                 }
             }
         }
