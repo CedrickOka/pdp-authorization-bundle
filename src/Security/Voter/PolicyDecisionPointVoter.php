@@ -33,7 +33,7 @@ class PolicyDecisionPointVoter implements VoterInterface, CacheableVoterInterfac
 
     public function supportsType(string $subjectType): bool
     {
-        return 'null' === $subjectType || is_subclass_of($subjectType, SubjectIdentityInterface::class);
+        return 'null' === $subjectType || is_subclass_of($subjectType, ResourceIdentityInterface::class);
     }
 
     public function vote(TokenInterface $token, mixed $subject, array $attributes, ?Vote $vote = null): int
